@@ -19,9 +19,9 @@ secrets/
 .terraform/
 
 # ---- Data and model artifacts (published via GitHub Releases, not git) ----
-data/
-work/
-artifacts/
+/data/
+/work/
+/artifacts/
 *.zip
 *.onnx
 *.onnx.data

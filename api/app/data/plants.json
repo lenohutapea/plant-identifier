@@ -1,0 +1,1179 @@
+{
+  "version": 1,
+  "language": "id",
+  "disclaimer": "Informasi ini adalah panduan umum budidaya dan bukan pengganti diagnosis ahli. Hasil identifikasi dari foto bisa salah; pastikan gejala di lapangan dan konsultasikan dengan penyuluh pertanian (PPL) atau dinas pertanian setempat sebelum menggunakan pestisida. Jadwal dan lama panen bergantung pada varietas, ketinggian tempat, dan musim.",
+  "plants": {
+    "Apple": {
+      "name": "Apel",
+      "scientific_name": "Malus domestica",
+      "category": "buah tahunan",
+      "indonesia_note": "Sentra di dataran tinggi seperti Batu dan Poncokusumo (Malang), sekitar 700–1.200 mdpl.",
+      "planting": "Tanam bibit okulasi pada lubang sekitar 60×60×60 cm berisi tanah campur pupuk kandang, jarak 2,5–3 m. Butuh sinar matahari penuh dan drainase baik. Di daerah tropis dilakukan perompesan daun dan pemangkasan untuk merangsang pembungaan.",
+      "water": "Siram rutin saat kemarau agar tanah lembap, tidak tergenang. Kurangi penyiraman menjelang perompesan.",
+      "fertilizer": "Pupuk kandang/kompos setiap musim, ditambah NPK berimbang setelah pemangkasan dan saat pembentukan buah. Sesuaikan dosis dengan umur tanaman dan hasil uji tanah.",
+      "harvest": {
+        "summary": "Mulai berbuah 3–4 tahun setelah tanam bibit okulasi; panen sekitar 4–5 bulan setelah perompesan.",
+        "first_harvest_years": "3–4"
+      },
+      "schedule": null,
+      "conditions": {
+        "Scab": {
+          "name": "Kudis apel",
+          "type": "fungal",
+          "pathogen": "Venturia inaequalis",
+          "description": "Penyakit jamur yang berkembang pada cuaca lembap dan dingin.",
+          "symptoms": [
+            "Bercak hijau zaitun hingga cokelat gelap seperti beludru pada daun",
+            "Daun menguning dan rontok",
+            "Bercak kasar dan retak pada buah"
+          ],
+          "treatment": [
+            "Kumpulkan dan musnahkan daun gugur yang terinfeksi",
+            "Semprot fungisida protektan (misalnya berbahan aktif mankozeb atau kaptan) sejak tunas muda",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Pangkas tajuk agar sirkulasi udara baik",
+            "Hindari penyiraman dari atas daun"
+          ]
+        },
+        "Black_rot": {
+          "name": "Busuk hitam",
+          "type": "fungal",
+          "pathogen": "Botryosphaeria obtusa",
+          "description": "Penyakit jamur yang menyerang daun, ranting, dan buah, sering masuk lewat luka.",
+          "symptoms": [
+            "Bercak ungu kecil yang melebar menjadi bercak cokelat bertepi ungu (frog-eye) pada daun",
+            "Buah busuk berwarna hitam dan mengeriput",
+            "Kanker pada cabang"
+          ],
+          "treatment": [
+            "Pangkas dan musnahkan cabang berkanker dan buah mumi",
+            "Semprot fungisida sesuai rekomendasi setempat",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Sanitasi kebun dan hindari luka pada pohon",
+            "Bersihkan sisa buah dari pohon dan tanah"
+          ]
+        },
+        "Cedar_apple_rust": {
+          "name": "Karat apel",
+          "type": "fungal",
+          "pathogen": "Gymnosporangium juniperi-virginianae",
+          "description": "Penyakit karat yang membutuhkan inang pengganti tanaman juniper (cemara). Jarang di Indonesia; bercak karat lain dengan gejala mirip tetap perlu diwaspadai.",
+          "symptoms": [
+            "Bercak kuning-oranye terang pada permukaan atas daun",
+            "Tonjolan kecil berambut di bawah daun",
+            "Daun rontok lebih awal"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi berat",
+            "Semprot fungisida antikarat sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Jauhkan kebun dari tanaman juniper",
+            "Pilih varietas yang lebih tahan bila tersedia"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun apel tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Apple"
+    },
+    "Blueberry": {
+      "name": "Blueberry",
+      "scientific_name": "Vaccinium corymbosum",
+      "category": "buah tahunan",
+      "indonesia_note": "Masih jarang di Indonesia; cocok di dataran tinggi dengan varietas berkebutuhan dingin rendah.",
+      "planting": "Butuh tanah sangat asam (pH 4,5–5,5) yang gembur dan kaya bahan organik, misalnya campuran cocopeat dan serbuk sabut. Cocok ditanam di pot besar. Jarak antartanaman sekitar 1–1,5 m.",
+      "water": "Akar dangkal: jaga media tetap lembap, siram 2–3 kali seminggu atau lebih saat kemarau. Gunakan air hujan bila air setempat bersifat basa.",
+      "fertilizer": "Gunakan pupuk khusus tanaman asam (sumber N berbentuk amonium). Hindari pupuk kandang segar dan kapur.",
+      "harvest": {
+        "summary": "Mulai berbuah 2–3 tahun setelah tanam; buah dipetik bertahap saat berwarna biru penuh.",
+        "first_harvest_years": "2–3"
+      },
+      "schedule": null,
+      "conditions": {
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun blueberry tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": false,
+      "id": "Blueberry"
+    },
+    "Cherry": {
+      "name": "Ceri",
+      "scientific_name": "Prunus avium / Prunus cerasus",
+      "category": "buah tahunan",
+      "indonesia_note": "Ceri subtropis sangat terbatas di Indonesia dan hanya mungkin di dataran tinggi.",
+      "planting": "Tanam bibit okulasi di lahan terbuka dengan drainase sangat baik, jarak 4–6 m. Pangkas untuk membentuk tajuk.",
+      "water": "Siram rutin saat kemarau, terutama selama pembentukan buah. Hindari genangan karena akar mudah busuk.",
+      "fertilizer": "Kompos setiap tahun dan NPK berimbang menjelang pertumbuhan tunas. Hindari nitrogen berlebih.",
+      "harvest": {
+        "summary": "Mulai berbuah sekitar 3–5 tahun setelah tanam.",
+        "first_harvest_years": "3–5"
+      },
+      "schedule": null,
+      "conditions": {
+        "Powdery_mildew": {
+          "name": "Embun tepung",
+          "type": "fungal",
+          "pathogen": "Podosphaera clandestina",
+          "description": "Penyakit jamur yang berkembang di cuaca hangat dengan kelembapan udara tinggi.",
+          "symptoms": [
+            "Lapisan putih seperti tepung pada daun muda",
+            "Daun keriting dan pertumbuhan tunas terhambat"
+          ],
+          "treatment": [
+            "Pangkas tunas yang terinfeksi",
+            "Semprot fungisida berbahan aktif sulfur atau fungisida sistemik sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Jaga jarak tanam dan pangkas agar tajuk tidak rimbun",
+            "Hindari nitrogen berlebih"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun ceri tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Cherry"
+    },
+    "Corn": {
+      "name": "Jagung",
+      "scientific_name": "Zea mays",
+      "category": "tanaman pangan semusim",
+      "indonesia_note": "Ditanam luas di dataran rendah sampai menengah di seluruh Indonesia.",
+      "planting": "Olah tanah hingga gembur. Tanam benih 1–2 butir per lubang sedalam 3–5 cm dengan jarak sekitar 75×20 cm atau 70×25 cm. Butuh sinar matahari penuh.",
+      "water": "Paling kritis saat berbunga dan pengisian biji. Jaga tanah lembap tetapi tidak tergenang; di lahan tadah hujan, tanam di awal musim hujan.",
+      "fertilizer": "Pupuk dasar NPK saat tanam, lalu urea susulan sekitar 3–4 dan 6–7 minggu setelah tanam. Sesuaikan dosis dengan rekomendasi setempat atau hasil uji tanah.",
+      "harvest": {
+        "summary": "Jagung pipil dipanen sekitar 90–110 HST saat kelobot mengering dan biji keras; jagung manis sekitar 65–75 HST.",
+        "min_days": 90,
+        "max_days": 110
+      },
+      "schedule": [
+        {
+          "hst": 0,
+          "activity": "Tanam benih dan pemupukan dasar"
+        },
+        {
+          "hst": 7,
+          "activity": "Penyulaman benih yang tidak tumbuh"
+        },
+        {
+          "hst": 21,
+          "activity": "Pemupukan susulan pertama dan penyiangan"
+        },
+        {
+          "hst": 42,
+          "activity": "Pemupukan susulan kedua dan pembumbunan"
+        },
+        {
+          "hst": 55,
+          "activity": "Pantau pembungaan; pastikan air cukup"
+        },
+        {
+          "hst": 100,
+          "activity": "Panen saat kelobot kering dan biji keras"
+        }
+      ],
+      "conditions": {
+        "Gray_leaf_spot": {
+          "name": "Bercak daun kelabu",
+          "type": "fungal",
+          "pathogen": "Cercospora zeae-maydis",
+          "description": "Penyakit jamur yang berkembang pada kelembapan tinggi dan banyak sisa tanaman di lahan.",
+          "symptoms": [
+            "Bercak memanjang persegi berwarna abu-abu hingga cokelat, dibatasi tulang daun",
+            "Bercak menyatu sehingga daun mengering"
+          ],
+          "treatment": [
+            "Semprot fungisida (misalnya golongan strobilurin atau triazol) bila serangan meluas sebelum berbunga",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Rotasi tanaman dengan bukan serealia",
+            "Benamkan atau musnahkan sisa tanaman",
+            "Gunakan varietas tahan"
+          ]
+        },
+        "Common_rust": {
+          "name": "Karat daun",
+          "type": "fungal",
+          "pathogen": "Puccinia sorghi",
+          "description": "Penyakit karat yang menyebar lewat spora terbawa angin.",
+          "symptoms": [
+            "Bintil kecil cokelat kemerahan seperti serbuk karat di kedua sisi daun",
+            "Daun menguning bila serangan berat"
+          ],
+          "treatment": [
+            "Semprot fungisida antikarat bila serangan berat pada fase awal",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan varietas tahan",
+            "Tanam serempak dalam satu hamparan"
+          ]
+        },
+        "Northern_leaf_blight": {
+          "name": "Hawar daun",
+          "type": "fungal",
+          "pathogen": "Exserohilum turcicum",
+          "description": "Penyakit jamur yang berkembang pada cuaca lembap dengan suhu sedang.",
+          "symptoms": [
+            "Bercak memanjang berbentuk cerutu, abu-abu kehijauan hingga cokelat, panjang 3–15 cm",
+            "Daun mengering dari bawah ke atas"
+          ],
+          "treatment": [
+            "Semprot fungisida bila gejala muncul sebelum berbunga",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan varietas tahan",
+            "Rotasi tanaman dan musnahkan sisa tanaman"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun jagung tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Corn"
+    },
+    "Grape": {
+      "name": "Anggur",
+      "scientific_name": "Vitis vinifera",
+      "category": "buah tahunan",
+      "indonesia_note": "Dibudidayakan antara lain di Probolinggo, Buleleng (Bali), dan Kupang; cocok di dataran rendah kering.",
+      "planting": "Tanam bibit stek atau okulasi di tempat terbuka dengan para-para atau rambatan. Pemangkasan produksi menentukan waktu berbuah, sehingga panen bisa diatur 2–3 kali setahun.",
+      "water": "Siram rutin pada fase vegetatif. Kurangi air menjelang pemangkasan dan saat buah mulai matang agar buah manis.",
+      "fertilizer": "Pupuk kandang setelah pemangkasan. NPK dengan nitrogen lebih tinggi pada fase tunas, lalu kalium lebih tinggi saat pembentukan buah.",
+      "harvest": {
+        "summary": "Mulai berbuah sekitar 1–2 tahun setelah tanam; panen sekitar 100–120 hari setelah pemangkasan produksi.",
+        "first_harvest_years": "1–2"
+      },
+      "schedule": null,
+      "conditions": {
+        "Black_rot": {
+          "name": "Busuk hitam",
+          "type": "fungal",
+          "pathogen": "Guignardia bidwellii",
+          "description": "Penyakit jamur yang menyerang daun, sulur, dan buah pada cuaca hangat dan basah.",
+          "symptoms": [
+            "Bercak cokelat kemerahan bertepi gelap pada daun dengan titik hitam kecil di tengah",
+            "Buah membusuk, menghitam, dan mengeriput menjadi mumi"
+          ],
+          "treatment": [
+            "Buang buah mumi dan daun terinfeksi",
+            "Semprot fungisida protektan sejak tunas muda",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Pangkas agar sirkulasi udara baik",
+            "Bersihkan sisa tanaman dari kebun"
+          ]
+        },
+        "Esca": {
+          "name": "Esca (penyakit batang)",
+          "type": "fungal",
+          "pathogen": "Kompleks jamur batang (Phaeomoniella, Phaeoacremonium, dan lain-lain)",
+          "description": "Penyakit kronis kayu batang. Gejala daun hanya tanda luar dari kerusakan di dalam batang.",
+          "symptoms": [
+            "Garis-garis kuning atau merah di antara tulang daun, menyerupai belang harimau",
+            "Bintik gelap pada buah",
+            "Tanaman bisa layu mendadak"
+          ],
+          "treatment": [
+            "Tidak ada obat yang menyembuhkan; potong bagian batang yang sakit hingga kayu sehat",
+            "Bongkar tanaman yang terserang berat"
+          ],
+          "prevention": [
+            "Pangkas saat cuaca kering dan tutup luka pangkasan",
+            "Gunakan bibit sehat"
+          ]
+        },
+        "Leaf_blight": {
+          "name": "Hawar daun (bercak Isariopsis)",
+          "type": "fungal",
+          "pathogen": "Pseudocercospora vitis",
+          "description": "Penyakit jamur daun yang umum pada musim hujan.",
+          "symptoms": [
+            "Bercak cokelat gelap tidak beraturan pada daun",
+            "Daun mengering dan rontok lebih awal"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi",
+            "Semprot fungisida sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Kurangi kelembapan di sekitar tajuk",
+            "Sanitasi daun gugur"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun anggur tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Grape"
+    },
+    "Orange": {
+      "name": "Jeruk",
+      "scientific_name": "Citrus spp.",
+      "category": "buah tahunan",
+      "indonesia_note": "Ditanam luas di Indonesia, misalnya jeruk siam dan jeruk keprok.",
+      "planting": "Gunakan bibit okulasi bersertifikat bebas penyakit. Tanam pada lubang sekitar 60×60×60 cm dengan jarak 4–5 m, di lahan terbuka dengan drainase baik.",
+      "water": "Siram rutin pada musim kemarau, terutama saat berbunga dan pembentukan buah. Hindari genangan.",
+      "fertilizer": "Pupuk kandang setiap tahun. NPK dibagi beberapa kali sesuai umur tanaman, ditambah unsur mikro (Zn, Mn, Mg) bila daun menunjukkan gejala kekurangan.",
+      "harvest": {
+        "summary": "Mulai berbuah sekitar 3–4 tahun setelah tanam bibit okulasi; buah matang sekitar 6–8 bulan setelah bunga mekar.",
+        "first_harvest_years": "3–4"
+      },
+      "schedule": null,
+      "conditions": {
+        "Citrus_greening": {
+          "name": "CVPD / Huanglongbing",
+          "type": "bacterial",
+          "pathogen": "Candidatus Liberibacter asiaticus (ditularkan kutu loncat Diaphorina citri)",
+          "description": "Penyakit bakteri paling merusak pada jeruk, dikenal di Indonesia sebagai CVPD.",
+          "symptoms": [
+            "Daun belang kuning tidak simetris (blotchy mottle)",
+            "Tulang daun menebal dan daun mengecil",
+            "Buah kecil, bentuk tidak normal, dan rasa pahit"
+          ],
+          "treatment": [
+            "Tidak bisa disembuhkan: bongkar dan musnahkan tanaman yang terinfeksi",
+            "Kendalikan kutu loncat dengan insektisida yang terdaftar",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan bibit berlabel bebas penyakit",
+            "Pantau kutu loncat secara rutin, terutama saat tunas muda"
+          ]
+        }
+      },
+      "condition_supported": false,
+      "id": "Orange"
+    },
+    "Peach": {
+      "name": "Persik",
+      "scientific_name": "Prunus persica",
+      "category": "buah tahunan",
+      "indonesia_note": "Jarang di Indonesia; hanya mungkin di dataran tinggi dengan varietas berkebutuhan dingin rendah.",
+      "planting": "Tanam bibit okulasi di tempat terbuka dengan drainase baik, jarak 4–5 m. Pangkas tajuk bentuk vas agar sinar masuk.",
+      "water": "Siram rutin saat kemarau dan pembentukan buah. Akar sensitif terhadap genangan.",
+      "fertilizer": "Kompos tahunan dan NPK berimbang menjelang pertumbuhan tunas.",
+      "harvest": {
+        "summary": "Mulai berbuah sekitar 2–4 tahun setelah tanam.",
+        "first_harvest_years": "2–4"
+      },
+      "schedule": null,
+      "conditions": {
+        "Bacterial_spot": {
+          "name": "Bercak bakteri",
+          "type": "bacterial",
+          "pathogen": "Xanthomonas arboricola pv. pruni",
+          "description": "Penyakit bakteri yang menyebar lewat percikan air hujan dan angin.",
+          "symptoms": [
+            "Bercak kecil kebasahan yang menjadi ungu kehitaman pada daun",
+            "Bagian tengah bercak rontok sehingga daun tampak berlubang (shot hole)",
+            "Bercak cekung pada buah"
+          ],
+          "treatment": [
+            "Semprot bakterisida berbahan tembaga sesuai label",
+            "Buang ranting dan daun yang terinfeksi",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan varietas tahan",
+            "Hindari nitrogen berlebih dan penyiraman dari atas"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun persik tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Peach"
+    },
+    "Pepper_bell": {
+      "name": "Paprika",
+      "scientific_name": "Capsicum annuum",
+      "category": "sayuran semusim",
+      "indonesia_note": "Umumnya ditanam di rumah kaca di dataran tinggi, misalnya Lembang dan Dieng.",
+      "planting": "Semai benih 4–6 minggu, lalu pindah tanam ke bedengan bermulsa plastik atau polybag. Jarak sekitar 50×50 cm. Pasang ajir atau tali penyangga.",
+      "water": "Jaga media tetap lembap merata. Tanah yang kering-basah bergantian memicu buah busuk ujung. Irigasi tetes paling ideal.",
+      "fertilizer": "Pupuk dasar kompos dan NPK. Setelah berbunga, pupuk dengan kalium dan kalsium lebih tinggi, diberikan sedikit demi sedikit tetapi sering.",
+      "harvest": {
+        "summary": "Panen pertama sekitar 75–90 hari setelah pindah tanam, lalu dipanen berkala.",
+        "min_days": 75,
+        "max_days": 90
+      },
+      "schedule": [
+        {
+          "hst": -35,
+          "activity": "Semai benih"
+        },
+        {
+          "hst": 0,
+          "activity": "Pindah tanam dan pemupukan dasar"
+        },
+        {
+          "hst": 14,
+          "activity": "Pasang ajir dan pemupukan susulan"
+        },
+        {
+          "hst": 30,
+          "activity": "Pemangkasan tunas air dan pemupukan susulan"
+        },
+        {
+          "hst": 45,
+          "activity": "Fase berbunga: tingkatkan kalium"
+        },
+        {
+          "hst": 80,
+          "activity": "Panen pertama, lalu panen berkala"
+        }
+      ],
+      "conditions": {
+        "Bacterial_spot": {
+          "name": "Bercak bakteri",
+          "type": "bacterial",
+          "pathogen": "Xanthomonas spp.",
+          "description": "Penyakit bakteri yang terbawa benih dan menyebar lewat percikan air.",
+          "symptoms": [
+            "Bercak kecil kebasahan yang berubah cokelat kehitaman pada daun",
+            "Daun menguning dan rontok",
+            "Bercak kasar menonjol pada buah"
+          ],
+          "treatment": [
+            "Cabut daun atau tanaman yang terinfeksi berat",
+            "Semprot bakterisida berbahan tembaga sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan benih sehat",
+            "Hindari penyiraman dari atas daun",
+            "Rotasi dengan tanaman bukan terung-terungan"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun paprika tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Pepper_bell"
+    },
+    "Potato": {
+      "name": "Kentang",
+      "scientific_name": "Solanum tuberosum",
+      "category": "tanaman pangan semusim",
+      "indonesia_note": "Sentra di dataran tinggi di atas sekitar 1.000 mdpl, misalnya Dieng, Pangalengan, dan Karo.",
+      "planting": "Tanam umbi bibit bersertifikat yang sudah bertunas di guludan, jarak sekitar 70×30 cm, kedalaman 8–10 cm. Lakukan pembumbunan agar umbi tidak terkena sinar matahari.",
+      "water": "Jaga kelembapan stabil, terutama saat pembentukan umbi. Hindari genangan karena memicu busuk umbi.",
+      "fertilizer": "Pupuk kandang matang dan NPK saat tanam, lalu pupuk susulan saat pembumbunan. Kalium penting untuk kualitas umbi.",
+      "harvest": {
+        "summary": "Dipanen sekitar 90–120 HST, saat daun menguning dan kulit umbi tidak mudah mengelupas.",
+        "min_days": 90,
+        "max_days": 120
+      },
+      "schedule": [
+        {
+          "hst": 0,
+          "activity": "Tanam umbi bibit dan pemupukan dasar"
+        },
+        {
+          "hst": 21,
+          "activity": "Penyiangan dan pembumbunan pertama"
+        },
+        {
+          "hst": 30,
+          "activity": "Pemupukan susulan"
+        },
+        {
+          "hst": 45,
+          "activity": "Pembumbunan kedua; pantau busuk daun"
+        },
+        {
+          "hst": 100,
+          "activity": "Hentikan penyiraman menjelang panen"
+        },
+        {
+          "hst": 110,
+          "activity": "Panen saat daun menguning"
+        }
+      ],
+      "conditions": {
+        "Early_blight": {
+          "name": "Bercak kering",
+          "type": "fungal",
+          "pathogen": "Alternaria solani",
+          "description": "Penyakit jamur yang biasanya menyerang daun tua lebih dulu.",
+          "symptoms": [
+            "Bercak cokelat dengan lingkaran konsentris seperti papan target",
+            "Daun di sekitar bercak menguning",
+            "Daun bawah mengering lebih dulu"
+          ],
+          "treatment": [
+            "Buang daun bawah yang terinfeksi",
+            "Semprot fungisida berbahan aktif mankozeb, klorotalonil, atau difenokonazol sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Rotasi tanaman",
+            "Pemupukan berimbang agar tanaman tidak lemah"
+          ]
+        },
+        "Late_blight": {
+          "name": "Busuk daun",
+          "type": "oomycete",
+          "pathogen": "Phytophthora infestans",
+          "description": "Penyakit paling merusak pada kentang. Menyebar sangat cepat pada cuaca dingin dan lembap.",
+          "symptoms": [
+            "Bercak kebasahan hijau gelap yang cepat menjadi cokelat kehitaman",
+            "Lapisan putih halus di bawah daun saat lembap",
+            "Tanaman bisa mati dalam beberapa hari"
+          ],
+          "treatment": [
+            "Segera semprot fungisida yang efektif untuk Phytophthora (misalnya simoksanil + mankozeb atau dimetomorf) sesuai label",
+            "Musnahkan tanaman yang terserang berat",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan umbi bibit sehat dan varietas tahan",
+            "Penyemprotan protektan terjadwal di musim hujan",
+            "Jaga jarak tanam agar tajuk tidak lembap"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun kentang tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Potato"
+    },
+    "Raspberry": {
+      "name": "Raspberry",
+      "scientific_name": "Rubus idaeus",
+      "category": "buah tahunan",
+      "indonesia_note": "Jarang dibudidayakan di Indonesia; hanya cocok di dataran tinggi yang sejuk.",
+      "planting": "Tanam di tanah gembur kaya bahan organik dengan pH sedikit asam (5,5–6,5). Beri rambatan atau tiang penyangga, jarak sekitar 60–90 cm.",
+      "water": "Jaga tanah tetap lembap, terutama saat berbuah. Hindari genangan.",
+      "fertilizer": "Kompos setiap musim dan NPK berimbang menjelang pertumbuhan tunas.",
+      "harvest": {
+        "summary": "Mulai berbuah 1–2 tahun setelah tanam; buah dipetik bertahap saat mudah lepas dari tangkai.",
+        "first_harvest_years": "1–2"
+      },
+      "schedule": null,
+      "conditions": {
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun raspberry tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": false,
+      "id": "Raspberry"
+    },
+    "Rice": {
+      "name": "Padi",
+      "scientific_name": "Oryza sativa",
+      "category": "tanaman pangan semusim",
+      "indonesia_note": "Tanaman pangan utama Indonesia, ditanam di sawah irigasi maupun tadah hujan.",
+      "planting": "Semai benih 15–21 hari, lalu tanam pindah 1–3 bibit per lubang. Sistem jajar legowo (misalnya 2:1) membantu sirkulasi udara dan memudahkan perawatan.",
+      "water": "Pengairan berselang (basah-kering) lebih hemat air dan mengurangi penyakit. Keringkan sawah sekitar 10–14 hari sebelum panen.",
+      "fertilizer": "Pupuk dasar NPK, lalu urea susulan pada fase anakan dan primordia. Gunakan Bagan Warna Daun untuk menentukan kebutuhan nitrogen; nitrogen berlebih memicu blas dan kresek.",
+      "harvest": {
+        "summary": "Dipanen sekitar 100–125 hari setelah semai, tergantung varietas, saat sekitar 90% gabah menguning.",
+        "min_days": 100,
+        "max_days": 125
+      },
+      "schedule": [
+        {
+          "hst": -18,
+          "activity": "Semai benih"
+        },
+        {
+          "hst": 0,
+          "activity": "Tanam pindah dan pemupukan dasar"
+        },
+        {
+          "hst": 7,
+          "activity": "Penyulaman"
+        },
+        {
+          "hst": 21,
+          "activity": "Pemupukan susulan pertama dan penyiangan"
+        },
+        {
+          "hst": 42,
+          "activity": "Pemupukan susulan kedua (fase primordia)"
+        },
+        {
+          "hst": 85,
+          "activity": "Keringkan sawah menjelang panen"
+        },
+        {
+          "hst": 100,
+          "activity": "Panen saat sekitar 90% gabah menguning"
+        }
+      ],
+      "conditions": {
+        "Bacterial_leaf_blight": {
+          "name": "Hawar daun bakteri (kresek)",
+          "type": "bacterial",
+          "pathogen": "Xanthomonas oryzae pv. oryzae",
+          "description": "Penyakit bakteri penting pada padi, terutama di musim hujan dan pada pemupukan nitrogen tinggi.",
+          "symptoms": [
+            "Garis kebasahan di tepi daun yang meluas menjadi kuning lalu putih keabu-abuan",
+            "Tepi bercak bergelombang",
+            "Pada bibit muda, daun layu (kresek)"
+          ],
+          "treatment": [
+            "Kurangi nitrogen dan perbaiki drainase",
+            "Keringkan petakan secara berselang",
+            "Bakterisida hanya efektif terbatas; konsultasikan dengan PPL",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan varietas tahan",
+            "Pemupukan berimbang dengan kalium cukup",
+            "Sanitasi jerami dan gulma inang"
+          ]
+        },
+        "Blast": {
+          "name": "Blas",
+          "type": "fungal",
+          "pathogen": "Pyricularia oryzae (Magnaporthe oryzae)",
+          "description": "Penyakit jamur yang menyerang daun (blas daun) dan leher malai (blas leher).",
+          "symptoms": [
+            "Bercak berbentuk belah ketupat dengan tengah abu-abu keputihan dan tepi cokelat",
+            "Leher malai membusuk sehingga gabah hampa"
+          ],
+          "treatment": [
+            "Semprot fungisida berbahan aktif trisiklazol atau golongan strobilurin sesuai label, terutama menjelang keluar malai",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan varietas tahan dan lakukan pergiliran varietas",
+            "Hindari nitrogen berlebih",
+            "Perlakuan benih sebelum semai"
+          ]
+        },
+        "Brown_spot": {
+          "name": "Bercak cokelat",
+          "type": "fungal",
+          "pathogen": "Bipolaris oryzae (Cochliobolus miyabeanus)",
+          "description": "Penyakit jamur yang sering berkaitan dengan tanah miskin hara atau tanaman yang tertekan.",
+          "symptoms": [
+            "Bercak oval cokelat dengan tengah keabu-abuan dan tepi kuning",
+            "Bintik cokelat pada gabah"
+          ],
+          "treatment": [
+            "Perbaiki hara, terutama kalium dan silika",
+            "Semprot fungisida sesuai label bila serangan berat",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Pemupukan berimbang",
+            "Gunakan benih sehat dan perlakuan benih"
+          ]
+        }
+      },
+      "condition_supported": false,
+      "id": "Rice"
+    },
+    "Soybean": {
+      "name": "Kedelai",
+      "scientific_name": "Glycine max",
+      "category": "tanaman pangan semusim",
+      "indonesia_note": "Ditanam di dataran rendah, sering setelah padi sawah pada musim kemarau.",
+      "planting": "Tanam benih 2–3 butir per lubang dengan jarak sekitar 40×15 cm. Untuk lahan baru, inokulasi benih dengan rhizobium membantu fiksasi nitrogen.",
+      "water": "Butuh air cukup saat perkecambahan, berbunga, dan pengisian polong. Hindari genangan; buat saluran drainase.",
+      "fertilizer": "Kebutuhan nitrogen rendah karena ada bintil akar. Utamakan fosfor dan kalium saat tanam, ditambah kapur di tanah masam.",
+      "harvest": {
+        "summary": "Dipanen sekitar 75–90 HST saat sebagian besar daun rontok dan polong berwarna cokelat.",
+        "min_days": 75,
+        "max_days": 90
+      },
+      "schedule": [
+        {
+          "hst": 0,
+          "activity": "Tanam benih dan pemupukan dasar"
+        },
+        {
+          "hst": 7,
+          "activity": "Penyulaman"
+        },
+        {
+          "hst": 21,
+          "activity": "Penyiangan pertama"
+        },
+        {
+          "hst": 35,
+          "activity": "Fase berbunga: jaga ketersediaan air"
+        },
+        {
+          "hst": 85,
+          "activity": "Panen saat polong cokelat dan daun rontok"
+        }
+      ],
+      "conditions": {
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun kedelai tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": false,
+      "id": "Soybean"
+    },
+    "Squash": {
+      "name": "Labu",
+      "scientific_name": "Cucurbita spp.",
+      "category": "sayuran semusim",
+      "indonesia_note": "Labu kuning dan zukini ditanam dari dataran rendah sampai tinggi.",
+      "planting": "Tanam benih langsung 2–3 butir per lubang yang diberi pupuk kandang, jarak sekitar 1–2 m karena tanaman merambat luas.",
+      "water": "Siram di pangkal tanaman, jangan membasahi daun, terutama sore hari. Butuh air cukup saat pembentukan buah.",
+      "fertilizer": "Pupuk kandang di lubang tanam, NPK saat tanam, lalu pupuk dengan kalium lebih tinggi saat berbuah.",
+      "harvest": {
+        "summary": "Zukini dipanen sekitar 45–60 HST saat buah masih muda; labu kuning sekitar 90–120 HST saat kulit mengeras.",
+        "min_days": 45,
+        "max_days": 120
+      },
+      "schedule": [
+        {
+          "hst": 0,
+          "activity": "Tanam benih dan pemupukan dasar"
+        },
+        {
+          "hst": 14,
+          "activity": "Penjarangan dan pemupukan susulan"
+        },
+        {
+          "hst": 30,
+          "activity": "Arahkan rambatan; mulai berbunga"
+        },
+        {
+          "hst": 45,
+          "activity": "Panen zukini muda, atau lanjutkan pemeliharaan untuk labu kuning"
+        },
+        {
+          "hst": 100,
+          "activity": "Panen labu kuning saat kulit mengeras"
+        }
+      ],
+      "conditions": {
+        "Powdery_mildew": {
+          "name": "Embun tepung",
+          "type": "fungal",
+          "pathogen": "Podosphaera xanthii / Erysiphe cichoracearum",
+          "description": "Penyakit jamur yang sangat umum pada labu-labuan, terutama di musim kemarau dengan udara lembap.",
+          "symptoms": [
+            "Bercak tepung putih pada permukaan daun",
+            "Daun menguning, mengering, dan buah kurang berkembang"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi berat",
+            "Semprot fungisida berbahan aktif sulfur atau fungisida sistemik sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Jarak tanam cukup agar sirkulasi udara baik",
+            "Gunakan varietas tahan bila tersedia"
+          ]
+        }
+      },
+      "condition_supported": false,
+      "id": "Squash"
+    },
+    "Strawberry": {
+      "name": "Stroberi",
+      "scientific_name": "Fragaria × ananassa",
+      "category": "buah semusim/tahunan pendek",
+      "indonesia_note": "Ditanam di dataran tinggi di atas sekitar 1.000 mdpl, misalnya Ciwidey, Lembang, dan Berastagi.",
+      "planting": "Tanam bibit dari stolon (geragih) di bedengan bermulsa plastik atau polybag, jarak sekitar 30×30 cm. Buang stolon yang tidak diperlukan agar tanaman fokus berbuah.",
+      "water": "Jaga media tetap lembap, siram di pangkal tanaman. Daun dan buah yang sering basah memicu penyakit.",
+      "fertilizer": "Pupuk kandang matang saat tanam, lalu NPK dosis kecil secara berkala. Tingkatkan kalium saat berbuah.",
+      "harvest": {
+        "summary": "Mulai berbuah sekitar 2–3 bulan setelah tanam bibit, lalu dipanen berkala beberapa kali seminggu.",
+        "min_days": 60,
+        "max_days": 90
+      },
+      "schedule": [
+        {
+          "hst": 0,
+          "activity": "Tanam bibit dan pemupukan dasar"
+        },
+        {
+          "hst": 14,
+          "activity": "Pemupukan susulan dan pembuangan stolon"
+        },
+        {
+          "hst": 30,
+          "activity": "Pembuangan daun tua dan stolon"
+        },
+        {
+          "hst": 45,
+          "activity": "Fase berbunga: tingkatkan kalium"
+        },
+        {
+          "hst": 70,
+          "activity": "Panen pertama, lalu panen berkala"
+        }
+      ],
+      "conditions": {
+        "Leaf_scorch": {
+          "name": "Hangus daun",
+          "type": "fungal",
+          "pathogen": "Diplocarpon earlianum",
+          "description": "Penyakit jamur daun yang berkembang pada kondisi lembap.",
+          "symptoms": [
+            "Bercak kecil ungu tua tidak beraturan pada daun",
+            "Bercak menyatu sehingga daun tampak hangus terbakar"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi",
+            "Semprot fungisida sesuai label bila serangan meluas",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan bibit sehat",
+            "Hindari penyiraman dari atas",
+            "Ganti tanaman tua secara berkala"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun stroberi tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Strawberry"
+    },
+    "Tomato": {
+      "name": "Tomat",
+      "scientific_name": "Solanum lycopersicum",
+      "category": "sayuran semusim",
+      "indonesia_note": "Ditanam dari dataran rendah sampai tinggi; hasil terbaik umumnya di dataran menengah-tinggi.",
+      "planting": "Semai benih 3–4 minggu, lalu pindah tanam ke bedengan bermulsa plastik, jarak sekitar 60×50 cm. Pasang ajir dan pangkas tunas air.",
+      "water": "Jaga kelembapan tanah merata dan siram di pangkal tanaman. Kelembapan yang naik-turun memicu buah pecah dan busuk ujung buah.",
+      "fertilizer": "Pupuk kandang dan NPK sebagai pupuk dasar. Pupuk susulan setiap 2–3 minggu dengan kalium dan kalsium lebih tinggi setelah berbunga.",
+      "harvest": {
+        "summary": "Panen pertama sekitar 60–90 hari setelah pindah tanam, lalu dipanen berkala.",
+        "min_days": 60,
+        "max_days": 90
+      },
+      "schedule": [
+        {
+          "hst": -25,
+          "activity": "Semai benih"
+        },
+        {
+          "hst": 0,
+          "activity": "Pindah tanam dan pemupukan dasar"
+        },
+        {
+          "hst": 10,
+          "activity": "Pasang ajir dan penyulaman"
+        },
+        {
+          "hst": 21,
+          "activity": "Pemupukan susulan dan pemangkasan tunas air"
+        },
+        {
+          "hst": 35,
+          "activity": "Fase berbunga: tingkatkan kalium; pantau hama dan penyakit"
+        },
+        {
+          "hst": 65,
+          "activity": "Panen pertama, lalu panen berkala"
+        }
+      ],
+      "conditions": {
+        "Bacterial_spot": {
+          "name": "Bercak bakteri",
+          "type": "bacterial",
+          "pathogen": "Xanthomonas spp.",
+          "description": "Penyakit bakteri yang terbawa benih dan menyebar lewat percikan air.",
+          "symptoms": [
+            "Bercak kecil gelap kebasahan dengan halo kuning pada daun",
+            "Bercak kasar pada buah"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi",
+            "Semprot bakterisida berbahan tembaga sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan benih sehat",
+            "Hindari penyiraman dari atas",
+            "Rotasi tanaman"
+          ]
+        },
+        "Early_blight": {
+          "name": "Bercak kering",
+          "type": "fungal",
+          "pathogen": "Alternaria solani",
+          "description": "Penyakit jamur yang biasanya dimulai dari daun tua di bagian bawah.",
+          "symptoms": [
+            "Bercak cokelat dengan lingkaran konsentris seperti papan target",
+            "Daun di sekitar bercak menguning"
+          ],
+          "treatment": [
+            "Buang daun bawah yang terinfeksi",
+            "Semprot fungisida berbahan aktif mankozeb, klorotalonil, atau difenokonazol sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Mulsa untuk mencegah percikan tanah",
+            "Rotasi tanaman dan pemupukan berimbang"
+          ]
+        },
+        "Late_blight": {
+          "name": "Busuk daun",
+          "type": "oomycete",
+          "pathogen": "Phytophthora infestans",
+          "description": "Penyakit yang menyebar sangat cepat pada cuaca dingin dan lembap.",
+          "symptoms": [
+            "Bercak besar kebasahan hijau gelap hingga cokelat pada daun",
+            "Lapisan putih di bawah daun saat lembap",
+            "Buah busuk cokelat dan keras"
+          ],
+          "treatment": [
+            "Segera semprot fungisida yang efektif untuk Phytophthora sesuai label",
+            "Cabut dan musnahkan tanaman yang terserang berat",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Jarak tanam cukup dan pangkas daun bawah",
+            "Penyemprotan protektan terjadwal di musim hujan"
+          ]
+        },
+        "Leaf_mold": {
+          "name": "Kapang daun",
+          "type": "fungal",
+          "pathogen": "Passalora fulva (Fulvia fulva)",
+          "description": "Penyakit jamur yang umum di rumah kaca atau tempat dengan kelembapan sangat tinggi.",
+          "symptoms": [
+            "Bercak kuning pucat di permukaan atas daun",
+            "Lapisan beludru hijau zaitun hingga cokelat di bawah daun"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi",
+            "Kurangi kelembapan dan perbaiki ventilasi",
+            "Semprot fungisida sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Ventilasi rumah kaca yang baik",
+            "Gunakan varietas tahan"
+          ]
+        },
+        "Septoria_leaf_spot": {
+          "name": "Bercak daun Septoria",
+          "type": "fungal",
+          "pathogen": "Septoria lycopersici",
+          "description": "Penyakit jamur daun yang menyebar lewat percikan air.",
+          "symptoms": [
+            "Banyak bercak bulat kecil dengan tengah abu-abu dan tepi gelap",
+            "Titik hitam kecil di tengah bercak",
+            "Daun menguning dan rontok dari bawah"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi",
+            "Semprot fungisida protektan sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Mulsa dan penyiraman di pangkal tanaman",
+            "Rotasi tanaman dan sanitasi sisa tanaman"
+          ]
+        },
+        "Spider_mites": {
+          "name": "Tungau laba-laba",
+          "type": "pest",
+          "pathogen": "Tetranychus urticae",
+          "description": "Hama kecil yang berkembang cepat pada cuaca panas dan kering.",
+          "symptoms": [
+            "Bintik-bintik kuning pucat (stippling) pada daun",
+            "Jaring halus di bawah daun",
+            "Daun mengering dan berwarna perunggu"
+          ],
+          "treatment": [
+            "Semprot air ke bawah daun untuk mengurangi populasi",
+            "Gunakan akarisida yang terdaftar (misalnya abamektin) sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Jaga kelembapan dan hindari tanaman stres kekeringan",
+            "Hindari insektisida spektrum luas yang membunuh musuh alami tungau"
+          ]
+        },
+        "Target_spot": {
+          "name": "Bercak target",
+          "type": "fungal",
+          "pathogen": "Corynespora cassiicola",
+          "description": "Penyakit jamur daun yang berkembang pada cuaca hangat dan lembap.",
+          "symptoms": [
+            "Bercak cokelat dengan lingkaran konsentris dan halo kuning",
+            "Bercak cekung pada buah"
+          ],
+          "treatment": [
+            "Buang daun yang terinfeksi",
+            "Semprot fungisida sesuai label",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Perbaiki sirkulasi udara",
+            "Rotasi tanaman dan sanitasi sisa tanaman"
+          ]
+        },
+        "Yellow_leaf_curl_virus": {
+          "name": "Virus kuning keriting (TYLCV)",
+          "type": "viral",
+          "pathogen": "Tomato yellow leaf curl virus (Begomovirus, ditularkan kutu kebul Bemisia tabaci)",
+          "description": "Penyakit virus yang tidak bisa disembuhkan dan ditularkan oleh kutu kebul.",
+          "symptoms": [
+            "Daun muda mengecil, menguning, dan menggulung ke atas",
+            "Tanaman kerdil dan bunga rontok"
+          ],
+          "treatment": [
+            "Cabut dan musnahkan tanaman yang terinfeksi",
+            "Kendalikan kutu kebul dengan perangkap kuning dan insektisida yang terdaftar",
+            "Gunakan pestisida terdaftar dan ikuti dosis serta interval pada label kemasan. Gunakan APD, rotasi bahan aktif, dan konsultasikan dengan penyuluh pertanian (PPL) setempat."
+          ],
+          "prevention": [
+            "Gunakan varietas tahan virus kuning",
+            "Gunakan kelambu/screen di persemaian",
+            "Bersihkan gulma inang kutu kebul"
+          ]
+        },
+        "Mosaic_virus": {
+          "name": "Virus mosaik (ToMV)",
+          "type": "viral",
+          "pathogen": "Tomato mosaic virus (Tobamovirus)",
+          "description": "Virus yang sangat mudah menular lewat sentuhan tangan, alat, dan benih.",
+          "symptoms": [
+            "Pola mosaik belang hijau muda dan tua pada daun",
+            "Daun berkerut dan bentuk tidak normal",
+            "Pertumbuhan terhambat"
+          ],
+          "treatment": [
+            "Cabut dan musnahkan tanaman yang terinfeksi",
+            "Cuci tangan dan disinfeksi alat sebelum menyentuh tanaman lain"
+          ],
+          "prevention": [
+            "Gunakan benih sehat bersertifikat",
+            "Hindari merokok atau memegang tembakau saat bekerja di kebun",
+            "Disinfeksi alat secara rutin"
+          ]
+        },
+        "Healthy": {
+          "name": "Sehat",
+          "type": "healthy",
+          "description": "Daun tomat tidak menunjukkan gejala penyakit yang dikenali model.",
+          "symptoms": [],
+          "treatment": [],
+          "prevention": [
+            "Lanjutkan perawatan rutin: penyiraman, pemupukan berimbang, dan sanitasi kebun.",
+            "Periksa daun secara berkala, terutama di musim hujan."
+          ]
+        }
+      },
+      "condition_supported": true,
+      "id": "Tomato"
+    }
+  }
+}
