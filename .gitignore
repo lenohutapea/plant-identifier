@@ -62,3 +62,6 @@ Thumbs.db
 
 # ---- Load test output ----
 k6-results/
+
+# Model files (downloaded, never committed)
+/api/models/
