@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: plant-api
+  labels:
+    app.kubernetes.io/name: plant-api
+spec:
+  ingressClassName: traefik
+  rules:
+    # nip.io resolves <anything>.10.212.51.11.nip.io to 10.212.51.11 (no DNS setup needed)
+    - host: plant-api.10.212.51.11.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: plant-api
+                port:
+                  name: http

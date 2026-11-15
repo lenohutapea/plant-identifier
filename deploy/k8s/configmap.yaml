@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: plant-api-config
+data:
+  # GitHub Release that holds plant_classifier.onnx + labels.json.
+  # Switch to .../download/model-v1 once the trained model is released.
+  MODEL_BASE_URL: "https://github.com/lenohutapea/plant-identifier/releases/download/model-v0-dummy"
+  PLANT_MIN_CONFIDENCE: "0.5"
+  CONDITION_MIN_CONFIDENCE: "0.5"
+  MAX_UPLOAD_MB: "8"
+  ORT_THREADS: "1"

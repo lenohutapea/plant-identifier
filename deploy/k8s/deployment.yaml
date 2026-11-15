@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plant-api
+  labels:
+    app.kubernetes.io/name: plant-api
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: plant-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: plant-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        # Downloads the model from the GitHub Release into a shared volume and
+        # verifies the SHA-256 recorded in labels.json, so a new model needs no new image.
+        - name: fetch-model
+          image: ghcr.io/lenohutapea/plant-identifier-api:latest
+          imagePullPolicy: Always
+          command: ["python", "-c"]
+          args:
+            - |
+              import hashlib, json, os, sys, urllib.request
+              base = os.environ["MODEL_BASE_URL"].rstrip("/")
+              dest = "/app/models"
+              for name in ("labels.json", "plant_classifier.onnx"):
+                  print(f"Downloading {base}/{name}", flush=True)
+                  urllib.request.urlretrieve(f"{base}/{name}", f"{dest}/{name}")
+              meta = json.load(open(f"{dest}/labels.json"))
+              with open(f"{dest}/plant_classifier.onnx", "rb") as f:
+                  sha = hashlib.sha256(f.read()).hexdigest()
+              if meta.get("model_sha256") and meta["model_sha256"] != sha:
+                  sys.exit(f"Checksum mismatch: expected {meta['model_sha256'][:12]}, got {sha[:12]}")
+              print(f"Model {sha[:12]} ready ({meta['num_classes']} classes)", flush=True)
+          env:
+            - name: MODEL_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: plant-api-config
+                  key: MODEL_BASE_URL
+          volumeMounts:
+            - name: models
+              mountPath: /app/models
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      containers:
+        - name: api
+          image: ghcr.io/lenohutapea/plant-identifier-api:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: plant-api-config
+          env:
+            - name: MODEL_DIR
+              value: /app/models
+          volumeMounts:
+            - name: models
+              mountPath: /app/models
+              readOnly: true
+            - name: tmp
+              mountPath: /tmp
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          startupProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 2
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
+      volumes:
+        - name: models
+          emptyDir:
+            sizeLimit: 200Mi
+        - name: tmp
+          emptyDir:
+            sizeLimit: 100Mi
