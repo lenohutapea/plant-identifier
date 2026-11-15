@@ -1,0 +1,16 @@
+.venv/
+venv/
+models/
+tests/
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.env
+.env.*
+*.onnx
+*.zip
+Dockerfile
+.dockerignore
+README.md
