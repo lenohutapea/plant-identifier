@@ -1,0 +1,64 @@
+# ---- Secrets (never commit) ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+kaggle.json
+kubeconfig
+*.kubeconfig
+.kube/
+secrets/
+*secret*.yaml
+!*sealed*secret*.yaml
+*.tfvars
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# ---- Data and model artifacts (published via GitHub Releases, not git) ----
+data/
+work/
+artifacts/
+*.zip
+*.onnx
+*.onnx.data
+*.pt
+*.pth
+*.ckpt
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- Android / Gradle ----
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+*.jks
+*.keystore
+captures/
+.externalNativeBuild/
+.cxx/
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# ---- Load test output ----
+k6-results/
