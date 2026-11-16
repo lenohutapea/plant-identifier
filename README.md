@@ -199,9 +199,20 @@ table above) or `unrecognized` (no plant above 50%). Details in [`api/README.md`
 
 ## Performance
 
-<!-- LOADTEST:START — k6 results with model-v1 -->
-_Pending a k6 run with model-v1._ The pipeline was verified with a stand-in model: 6,792 requests,
-0 errors, and the HPA scaled from 1 to 2 pods when CPU passed the 70% target.
+<!-- LOADTEST:START -->
+k6 load test against `POST /predict` through Traefik on a single-node k3s (Ubuntu VM, 4 vCPU, 5.8 GB RAM),
+model-v1, 640x480 JPEG, ramping to 20 virtual users that each wait 0.5 s between requests (4 minutes):
+
+| Metric | Result |
+|---|---|
+| Requests | 6,716 (about 28/s), 0 errors |
+| Latency median / p90 / p95 | 17 ms / 28 ms / 34 ms |
+| Latency max | 145 ms (while new pods were starting) |
+| Autoscaling | CPU reached 161% of the 70% target; HPA scaled from 1 to 3 pods |
+
+Each pod runs ONNX Runtime with one inference thread and a 1-CPU limit. The request rate is set by the
+test scenario (20 users with a 0.5 s pause), not by the server, so this shows latency and autoscaling
+under load rather than maximum throughput.
 <!-- LOADTEST:END -->
 
 ## Limitations
