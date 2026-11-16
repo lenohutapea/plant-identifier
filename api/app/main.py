@@ -140,7 +140,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("error", Image.DecompressionBombWarning)
-                img = Image.open(io.BytesIO(data))
+                img = Image.open(io.BytesIO(data), formats=["JPEG", "PNG", "WEBP"])
                 img.load()
         except (UnidentifiedImageError, OSError, Image.DecompressionBombError, Image.DecompressionBombWarning):
             raise HTTPException(status_code=400, detail="File is not a supported or valid image")
