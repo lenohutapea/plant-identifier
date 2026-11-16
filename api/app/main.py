@@ -103,9 +103,15 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/plants", tags=["plants"])
     def list_plants(request: Request):
-        """All supported plants with their conditions."""
+        """Plants the loaded model can recognize, with their conditions."""
         store: PlantStore = request.app.state.plants
-        return {"disclaimer": store.disclaimer, "plants": store.summaries()}
+        summaries = store.summaries()
+        classifier = request.app.state.classifier
+        if classifier is not None:
+            # Only advertise plants the loaded model can actually recognize.
+            known = set(classifier.labels.plant_ids)
+            summaries = [p for p in summaries if p["id"] in known]
+        return {"disclaimer": store.disclaimer, "plants": summaries}
 
     @app.get("/plants/{plant_id}", tags=["plants"])
     def get_plant(plant_id: str, request: Request):

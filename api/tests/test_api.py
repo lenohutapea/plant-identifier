@@ -149,6 +149,15 @@ def test_list_plants(client):
     assert unsupported == ["Blueberry", "Orange", "Raspberry", "Rice", "Soybean", "Squash"]
 
 
+def test_list_plants_follows_loaded_model(make_client):
+    from tests.dummy_model import class_list
+    without_rice = [c for c in class_list() if not c.startswith("Rice___")]
+    client = make_client({"Tomato___Healthy": 5.0}, classes=without_rice)
+    ids = [p["id"] for p in client.get("/plants").json()["plants"]]
+    assert len(ids) == 14 and "Rice" not in ids
+    assert client.get("/plants/Rice").status_code == 200  # care info itself is still available
+
+
 def test_get_plant(client):
     r = client.get("/plants/Tomato")
     assert r.status_code == 200

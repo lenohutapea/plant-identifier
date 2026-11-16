@@ -27,10 +27,10 @@ def make_client(tmp_path: Path):
     """make_client(bias_by_label, default_bias=0.0, **settings_overrides) -> TestClient (lifespan started)."""
     clients = []
 
-    def factory(bias_by_label=None, default_bias=0.0, write=True, sha_override=None, **overrides):
+    def factory(bias_by_label=None, default_bias=0.0, write=True, sha_override=None, classes=None, **overrides):
         model_dir = tmp_path / f"models_{len(clients)}"
         if write:
-            write_model(model_dir, bias_by_label, default_bias, sha_override=sha_override)
+            write_model(model_dir, bias_by_label, default_bias, classes=classes, sha_override=sha_override)
         settings = Settings(model_path=model_dir / "plant_classifier.onnx",
                             labels_path=model_dir / "labels.json",
                             plants_path=APP_DIR / "data" / "plants.json")
