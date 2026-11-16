@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ---- Build stage: install dependencies into a virtualenv ----
-FROM python:3.12-slim AS builder
+FROM python:3.15-slim AS builder
 ENV PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /build
@@ -11,7 +11,7 @@ RUN python -m venv /opt/venv \
  && /opt/venv/bin/pip install -r requirements.txt
 
 # ---- Runtime stage: code only, non-root user ----
-FROM python:3.12-slim
+FROM python:3.15-slim
 LABEL org.opencontainers.image.title="plant-identifier-api" \
       org.opencontainers.image.description="Crop and leaf condition classifier (FastAPI + ONNX Runtime)" \
       org.opencontainers.image.source="https://github.com/lenohutapea/plant-identifier" \
