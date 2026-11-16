@@ -13,6 +13,10 @@ updates:
     directory: /api
     schedule:
       interval: weekly
+    ignore:
+      # Stay on Python 3.12 (matches CI and wheel availability); accept patch updates only
+      - dependency-name: "python"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   - package-ecosystem: github-actions
     directory: /
