@@ -3,7 +3,7 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
 
-const BASE_URL = __ENV.BASE_URL || "http://plant-api.10.212.51.11.nip.io";
+const BASE_URL = __ENV.BASE_URL || "http://plant-api.10.110.231.11.nip.io";
 const image = open("./leaf.jpg", "b");
 
 export const options = {

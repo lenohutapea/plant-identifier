@@ -6,7 +6,7 @@ plugins {
 }
 
 val apiBaseUrl: String = providers.gradleProperty("apiBaseUrl")
-    .getOrElse("http://plant-api.10.212.51.11.nip.io/")
+    .getOrElse("http://plant-api.10.110.231.11.nip.io/")
 
 android {
     namespace = "com.lenohutapea.plantidentifier"

@@ -7,8 +7,8 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    # nip.io resolves <anything>.10.212.51.11.nip.io to 10.212.51.11 (no DNS setup needed)
-    - host: plant-api.10.212.51.11.nip.io
+    # nip.io resolves <anything>.10.110.231.11.nip.io to 10.110.231.11 (no DNS setup needed)
+    - host: plant-api.10.110.231.11.nip.io
       http:
         paths:
           - path: /
