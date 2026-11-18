@@ -66,6 +66,37 @@ Dataset hygiene for this run: 18 images with conflicting labels and 24 duplicate
 Per-class F1 before/after, confusion matrices and training curves are produced by the notebook
 (`eval/` in the training artifacts, attached to the [model-v1 release](https://github.com/lenohutapea/plant-identifier/releases)).
 
+## Android app
+
+| Home | Result | History |
+|---|---|---|
+| <img src="docs/images/android_home.jpg" width="230" alt="Home screen with take-photo and gallery buttons"> | <img src="docs/images/android_result.jpg" width="230" alt="Result screen: corn recognized at 88%, leaf condition flagged as low confidence, care information in Indonesian"> | <img src="docs/images/android_history.jpg" width="230" alt="History of saved diagnoses"> |
+
+Kotlin + Jetpack Compose (MVVM, Retrofit, Room). Photos from the camera or gallery are resized to 1024 px
+before upload; every diagnosis is stored locally with the full API response so history opens offline.
+CI builds the debug APK on every push and publishes it to the
+[android-latest pre-release](https://github.com/lenohutapea/plant-identifier/releases/tag/android-latest).
+
+## Field testing on a phone
+
+Photos taken or picked on a real phone with model-v1, beyond the benchmark test sets:
+
+| Photo | Truth | App answer | Confidence | Verdict |
+|---|---|---|---:|---|
+| Corn cob in the field (not a leaf) | Corn | Corn; condition "possibly common rust", flagged low confidence | 88% plant, 49% condition | Plant correct; uncertainty shown honestly |
+| Chili leaves (3 photos) | Chili (*Capsicum*) | Bell pepper, healthy | 51–77% | Closest supported relative: same genus |
+| Potato plant (stock photo, transparent background) | Potato | Soybean, healthy | 65% | **Wrong** |
+
+What this shows:
+
+- The model is **closed-set**: it must pick one of its 14 crops, so a leaf it has never seen is mapped to the
+  most similar one. For chili this is useful (the app now labels the class "Paprika / Cabai"); for other
+  plants it is a wrong answer delivered with moderate confidence.
+- Healthy potato has the fewest examples in the training data (about 150 lab photos, no field photos), which
+  matches the potato miss.
+- Planned fixes: choose the "not recognized" threshold from the validation calibration table that the
+  notebook now produces, and train an explicit **"other plant / not a leaf"** class with out-of-scope images.
+
 ## Architecture
 
 ```mermaid
@@ -120,7 +151,7 @@ information in the API already and is planned for model-v2.
 | Corn (Jagung) | Gray leaf spot, Common rust, Northern leaf blight, Healthy | Yes |
 | Grape (Anggur) | Black rot, Esca, Leaf blight, Healthy | Yes |
 | Peach (Persik) | Bacterial spot, Healthy | Yes |
-| Bell pepper (Paprika) | Bacterial spot, Healthy | Yes |
+| Bell pepper / chili (Paprika / Cabai) | Bacterial spot, Healthy | Yes — chili leaves are recognized as this class |
 | Potato (Kentang) | Early blight, Late blight, Healthy | Yes |
 | Strawberry (Stroberi) | Leaf scorch, Healthy | Yes |
 | Tomato (Tomat) | 9 diseases + Healthy | Yes |
@@ -217,9 +248,10 @@ under load rather than maximum throughput.
 
 ## Limitations
 
-- **14 crops only (rice follows in model-v2).** Many crops common in Indonesia — chili (including cabai rawit), cassava, cocoa,
-  coffee, sweet potato — are not in the datasets, and a photo of them will be "not recognized" at best or
-  misclassified at worst.
+- **14 crops only (rice follows in model-v2).** Many crops common in Indonesia — cassava, cocoa, coffee,
+  sweet potato — are not in the datasets, and a photo of them will be "not recognized" at best or
+  misclassified at worst (see Field testing). Chili has no class of its own; its leaves are recognized as
+  bell pepper (same genus), and disease diagnosis on chili is untested.
 - **Field accuracy is lower than lab accuracy**, even after fine-tuning; see the results table. PlantDoc is
   small (about 2,600 images) and has no field photos for some classes (for example Orange, Tomato target
   spot, Grape esca), which are therefore evaluated on lab photos only.
