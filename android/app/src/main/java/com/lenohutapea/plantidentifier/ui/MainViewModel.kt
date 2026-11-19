@@ -11,6 +11,7 @@ import com.lenohutapea.plantidentifier.data.Diagnosis
 import com.lenohutapea.plantidentifier.data.DiagnosisRepository
 import com.lenohutapea.plantidentifier.data.ServerSettings
 import com.lenohutapea.plantidentifier.data.local.DiagnosisEntity
+import com.lenohutapea.plantidentifier.data.remote.PlantSummary
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,7 +24,7 @@ import java.io.IOException
 
 sealed interface AnalysisState {
     data object Idle : AnalysisState
-    data object Loading : AnalysisState
+    data class Loading(val photo: Uri) : AnalysisState
     data class Success(val diagnosis: Diagnosis) : AnalysisState
     data class Error(val message: String) : AnalysisState
 }
@@ -38,9 +39,19 @@ class MainViewModel(
     val history: StateFlow<List<DiagnosisEntity>> = repository.history
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    private val _plants = MutableStateFlow<List<PlantSummary>>(emptyList())
+    val plants: StateFlow<List<PlantSummary>> = _plants.asStateFlow()
+
+    /** Fetch the plant list shown on the home screen; failures just leave it empty. */
+    fun refreshPlants() {
+        viewModelScope.launch {
+            runCatching { repository.supportedPlants() }.onSuccess { _plants.value = it }
+        }
+    }
+
     fun analyze(uri: Uri) {
-        if (_state.value == AnalysisState.Loading) return
-        _state.value = AnalysisState.Loading
+        if (_state.value is AnalysisState.Loading) return
+        _state.value = AnalysisState.Loading(uri)
         viewModelScope.launch {
             _state.value = try {
                 AnalysisState.Success(repository.diagnose(uri))

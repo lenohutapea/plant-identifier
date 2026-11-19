@@ -7,6 +7,7 @@ import com.lenohutapea.plantidentifier.data.local.DiagnosisDao
 import com.lenohutapea.plantidentifier.data.local.DiagnosisEntity
 import com.lenohutapea.plantidentifier.data.remote.PlantApi
 import com.lenohutapea.plantidentifier.data.remote.PlantInfo
+import com.lenohutapea.plantidentifier.data.remote.PlantSummary
 import com.lenohutapea.plantidentifier.data.remote.PredictResponse
 import com.lenohutapea.plantidentifier.util.ImageCompressor
 import kotlinx.coroutines.Dispatchers
@@ -65,6 +66,9 @@ class DiagnosisRepository(
             throw e
         }
     }
+
+    /** Plants the deployed model recognizes (follows the model version on the server). */
+    suspend fun supportedPlants(): List<PlantSummary> = withContext(Dispatchers.IO) { api.plants().plants }
 
     suspend fun load(id: Long): Diagnosis? = withContext(Dispatchers.IO) {
         dao.get(id)?.let { entity ->

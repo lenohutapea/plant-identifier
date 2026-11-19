@@ -68,3 +68,13 @@ data class ConditionInfo(
     val treatment: List<String>,
     val prevention: List<String>,
 )
+
+/** Response of GET /plants: the plants the deployed model recognizes. */
+data class PlantList(val plants: List<PlantSummary>)
+
+data class PlantSummary(
+    val id: String,
+    val name: String,
+    @SerializedName("scientific_name") val scientificName: String,
+    @SerializedName("condition_supported") val conditionSupported: Boolean,
+)

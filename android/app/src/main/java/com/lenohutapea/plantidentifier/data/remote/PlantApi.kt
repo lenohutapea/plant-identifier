@@ -12,6 +12,9 @@ interface PlantApi {
     @POST("predict")
     suspend fun predict(@Part image: MultipartBody.Part): PredictResponse
 
+    @GET("plants")
+    suspend fun plants(): PlantList
+
     @GET("plants/{id}")
     suspend fun plant(@Path("id") id: String): PlantInfo
 }
