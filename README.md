@@ -13,7 +13,14 @@ It is an end-to-end project covering **computer vision** (training, honest evalu
 a **production-style API** (FastAPI + ONNX Runtime, tests, metrics) and **DevOps**
 (non-root container, CI/CD to GHCR, k3s with Traefik and autoscaling, load testing).
 
-<!-- Screenshots: add after the Android build, e.g. docs/screenshots/home.png, result.png, history.png -->
+<p align="center">
+  <img src="docs/images/android_home.jpg" width="200" alt="Home screen">
+  <img src="docs/images/android_result.jpg" width="200" alt="Result screen">
+  <img src="docs/images/android_history.jpg" width="200" alt="History screen">
+</p>
+
+**Status:** complete for portfolio use. model-v2 (15 crops, 41 classes) is deployed on k3s; the Android APK is
+built by CI. Known gaps are listed under [Limitations](#limitations) and [Next steps](#next-steps).
 
 ## The main finding: lab accuracy is not field accuracy
 
@@ -108,40 +115,76 @@ kubectl apply -k deploy/k8s && kubectl -n plant-identifier rollout restart deplo
 ```
 <!-- RESULTS:END -->
 
-Per-class F1 before/after, confusion matrices and training curves are produced by the notebook
-(`eval/` in the training artifacts, attached to the [model-v1 release](https://github.com/lenohutapea/plant-identifier/releases)).
+Per-class F1 before/after, confusion matrices, training curves and the threshold calibration table are produced
+by the notebook (`eval/` in the training artifacts, attached to each
+[model release](https://github.com/lenohutapea/plant-identifier/releases)).
 
 ## Android app
 
-| Home | Result | History |
-|---|---|---|
-| <img src="docs/images/android_home.jpg" width="230" alt="Home screen with take-photo and gallery buttons"> | <img src="docs/images/android_result.jpg" width="230" alt="Result screen: corn recognized at 88%, leaf condition flagged as low confidence, care information in Indonesian"> | <img src="docs/images/android_history.jpg" width="230" alt="History of saved diagnoses"> |
+| Home | Result | Not recognized | History |
+|---|---|---|---|
+| <img src="docs/images/android_home.jpg" width="190" alt="Home screen with take-photo and gallery buttons, recent diagnoses and supported plants"> | <img src="docs/images/android_result.jpg" width="190" alt="Result screen with the plant, leaf condition, confidence and care information in Indonesian"> | <img src="docs/images/android_unrecognized.jpg" width="190" alt="A corn cob photo answered with Not recognized and the closest matches"> | <img src="docs/images/android_history.jpg" width="190" alt="History of saved diagnoses with status tags"> |
 
-Kotlin + Jetpack Compose (MVVM, Retrofit, Room). Photos from the camera or gallery are resized to 1024 px
-before upload; every diagnosis is stored locally with the full API response so history opens offline.
-CI builds the debug APK on every push and publishes it to the
+Kotlin + Jetpack Compose, MVVM, Retrofit, Room.
+
+- **Home:** take a photo or pick one from the gallery. Below that are recent diagnoses and the list of
+  plants the server's current model recognizes (read from `GET /plants`, so it follows model updates).
+- **Analyzing:** the photo is shown full screen with a scanning line while the request runs.
+- **Result:** a specimen-style label with the plant name, Latin name, confidence and a color-coded leaf
+  condition (healthy, disease, uncertain, not assessed). Three tabs:
+  - **Diagnosis:** symptoms, treatment, prevention, top-3 predictions.
+  - **Care:** planting, watering, fertilizer, harvest, notes for Indonesia.
+  - **Schedule:** a timeline in days after planting (HST).
+  Photos the model is not confident about are answered with **Not recognized** and the closest matches,
+  instead of a wrong diagnosis.
+- **History:** every diagnosis is stored locally with the full API response, so it opens offline.
+  Entries can be deleted.
+- **Settings:** the server address can be changed in the app (for example when the server's IP changes),
+  without rebuilding.
+
+Photos are resized to 1024 px before upload. Cleartext HTTP is allowed only for `*.nip.io`, the emulator
+host and localhost. CI runs the unit tests, builds the debug APK on every push and publishes it to the
 [android-latest pre-release](https://github.com/lenohutapea/plant-identifier/releases/tag/android-latest).
 
 ## Field testing on a phone
 
-Photos taken or picked on a real phone with model-v1 (threshold 0.5), beyond the benchmark test sets:
+Beyond the benchmark test sets, the app was tried on a real phone. These are informal checks (a few photos
+per plant, no ground-truth disease labels), not a benchmark.
 
-| Photo | Truth | App answer | Confidence | Verdict |
-|---|---|---|---:|---|
-| Corn cob in the field (not a leaf) | Corn | Corn; condition "possibly common rust", flagged low confidence | 88% plant, 49% condition | Plant correct; uncertainty shown honestly |
-| Chili leaves (3 photos) | Chili (*Capsicum*) | Bell pepper, healthy | 51–77% | Closest supported relative: same genus |
-| Potato plant (stock photo, transparent background) | Potato | Soybean, healthy | 65% | **Wrong** |
+**model-v2, threshold 0.7.** Most photos were internet images photographed off a laptop screen.
+
+| Photo | App answer | Verdict |
+|---|---|---|
+| Tomato, strawberry, peach and grape leaves | Correct plant, healthy (86–97%) | Correct |
+| Rice, squash, soybean and raspberry | Correct plant, "condition not assessed" | Correct (no condition data for these, by design) |
+| Corn leaf | Corn, "leaf blight" at 52% | Plant correct; condition not verified |
+| Corn cob (not a leaf) | Not recognized (best guess 35%) | Correct refusal |
+| Orange, bell pepper, potato, apple, blueberry and cherry leaves | Often a wrong plant or "not recognized" | **Weak** |
+
+Why the weak group fails:
+
+- **Healthy orange leaves never appear in the training data.** The only orange class is citrus greening, so
+  the model cannot recognize a healthy orange leaf.
+- Bell pepper, potato, apple, cherry and blueberry have few or no field photos (mostly PlantVillage lab
+  photos), and their leaves look alike.
+- **Photographing a screen** adds moiré patterns, a pixel grid, glare and a color shift that the model never
+  saw in training. Stock images on white backgrounds are also unlike both lab and field photos. Choosing the
+  saved image from the gallery, or photographing a real leaf, is a fairer test.
+
+**Earlier, model-v1 at threshold 0.5:**
+
+| Photo | Truth | App answer | Verdict |
+|---|---|---|---|
+| Chili leaves (3 photos) | Chili (*Capsicum*) | Bell pepper, healthy, 51–77% | Closest supported relative: same genus |
+| Potato plant (stock photo) | Potato | Soybean, healthy, 65% | **Wrong**, and would now be "not recognized" at 0.7 |
 
 What this shows:
 
-- The model is **closed-set**: it must pick one of its 15 crops, so a leaf it has never seen is mapped to the
-  most similar one. For chili this is useful (the app now labels the class "Paprika / Cabai"); for other
-  plants it is a wrong answer delivered with moderate confidence.
-- Healthy potato has the fewest examples in the training data (about 150 lab photos, no field photos), which
-  matches the potato miss.
-- Fixes: the "not recognized" threshold is now 0.7, chosen from the validation calibration table (the potato
-  miss at 65% would now be "not recognized"); next, an explicit **"other plant / not a leaf"** class trained on
-  out-of-scope images.
+- The model is **closed-set**: it must choose one of its 15 crops. The 0.7 threshold turns many wrong answers
+  into "not recognized" but cannot catch all of them. A leaf of an unsupported species can still land on a
+  similar crop with high confidence.
+- For chili this is useful: the class is labeled "Paprika / Cabai". For other unsupported plants it is a
+  wrong answer, which is what the planned "other" class addresses.
 
 ## Architecture
 
@@ -257,8 +300,10 @@ Change the host in `deploy/k8s/ingress.yaml` and the model release in `deploy/k8
 docker run --rm -i --network host -v "$PWD/loadtest:/scripts" grafana/k6 run /scripts/predict.js
 ```
 
-**Android** — open `android/` in Android Studio and run, or download the debug APK from the latest
-`android` workflow run. The API address is `apiBaseUrl` in `android/gradle.properties`.
+**Android** — download the debug APK from the
+[android-latest pre-release](https://github.com/lenohutapea/plant-identifier/releases/tag/android-latest), or open
+`android/` in Android Studio and run. The default API address is `apiBaseUrl` in `android/gradle.properties`;
+it can also be changed in the app's Settings screen.
 
 ## API
 
@@ -270,14 +315,15 @@ docker run --rm -i --network host -v "$PWD/loadtest:/scripts" grafana/k6 run /sc
 | GET | `/healthz`, `/readyz` | Liveness / readiness (503 until the model is loaded) |
 | GET | `/metrics` | Prometheus metrics: requests, latency, inference time, predictions per plant |
 
-`condition_status` is one of `assessed`, `uncertain` (best guess below 50%), `not_supported` (see the
-table above) or `unrecognized` (no plant above 50%). Details in [`api/README.md`](api/README.md).
+`condition_status` is one of `assessed`, `uncertain` (best condition guess below `CONDITION_MIN_CONFIDENCE`,
+0.5), `not_supported` (see the table above) or `unrecognized` (no plant reaches `PLANT_MIN_CONFIDENCE`, 0.7 in
+the k3s deployment). Details in [`api/README.md`](api/README.md).
 
 ## Performance
 
 <!-- LOADTEST:START -->
 k6 load test against `POST /predict` through Traefik on a single-node k3s (Ubuntu VM, 4 vCPU, 5.8 GB RAM),
-model-v1, 640x480 JPEG, ramping to 20 virtual users that each wait 0.5 s between requests (4 minutes):
+model-v1 (same architecture and input size as model-v2), 640x480 JPEG, ramping to 20 virtual users that each wait 0.5 s between requests (4 minutes):
 
 | Metric | Result |
 |---|---|
@@ -293,23 +339,39 @@ under load rather than maximum throughput.
 
 ## Limitations
 
-- **15 crops only.** Many crops common in Indonesia — cassava, cocoa, coffee,
-  sweet potato — are not in the datasets, and a photo of them will be "not recognized" at best or
-  misclassified at worst (see Field testing). Chili has no class of its own; its leaves are recognized as
-  bell pepper (same genus), and disease diagnosis on chili is untested.
+- **15 crops only.** Many crops common in Indonesia — cassava, cocoa, coffee, sweet potato, local chili such
+  as cabai rawit — are not in the datasets. A photo of them is "not recognized" at best and misclassified at
+  worst (see Field testing). Chili has no class of its own; its leaves are recognized as bell pepper (same
+  genus), and disease diagnosis on chili is untested.
+- **The model is closed-set.** There is no "other plant / not a leaf" class yet; the confidence threshold is
+  the only guard against out-of-scope photos.
+- **Healthy orange leaves cannot be recognized:** the data has only diseased (citrus greening) orange leaves.
 - **Field accuracy is lower than lab accuracy**, even after fine-tuning; see the results table. PlantDoc is
   small (about 2,600 images) and has no field photos for some classes (for example Orange, Tomato target
-  spot, Grape esca), which are therefore evaluated on lab photos only.
-- **Six crops have no condition diagnosis** because their data has only one condition (see above). Rice in
-  particular has no healthy class.
+  spot, Grape esca), which are therefore evaluated on lab photos only. Bell pepper, potato, apple, cherry and
+  blueberry were the weakest in phone testing.
+- **Photos of a screen and stock images work worse** than photos of real leaves (moiré, glare, color shift,
+  artificial backgrounds).
+- **Six crops have no condition diagnosis** because their data has only one condition (see Supported plants).
+  Rice in particular has no healthy class.
 - **Label approximations:** PlantDoc's "Corn leaf blight" is mapped to Northern leaf blight, and
   "&lt;plant&gt; leaf" folders are treated as healthy.
-- **Rice data is small** (about 470 images, originally a detection dataset with augmented copies).
+- **Rice data is small** (about 470 images from a single source), so rice results are likely optimistic.
 - **Care information is general guidance** written for this project, not reviewed by an agronomist.
   Pesticides are named by active ingredient only; always follow the product label and consult a local
   extension officer (PPL).
 - **The API runs over plain HTTP on the local network.** Exposing it publicly would need TLS
-  (for example cert-manager) and rate limiting.
+  (for example cert-manager), authentication and rate limiting.
+
+## Next steps
+
+- **model-v3:**
+  - an explicit "other plant / not a leaf" class trained on out-of-scope images;
+  - healthy citrus leaves from an openly licensed dataset;
+  - screen-photo augmentation (moiré, color shift, glare).
+- **More field photos** for the weak crops, ideally photographed locally in North Sumatra.
+- **Observability:** a Prometheus + Grafana dashboard for the metrics the API already exposes.
+- **GitOps:** deploy from the repository with Argo CD instead of `kubectl apply`.
 
 ## Datasets and citations
 
