@@ -6,7 +6,7 @@ data:
   # GitHub Release that holds plant_classifier.onnx + labels.json.
   # Switch to .../download/model-v2 once the trained model is released.
   MODEL_BASE_URL: "https://github.com/lenohutapea/plant-identifier/releases/download/model-v2"
-  PLANT_MIN_CONFIDENCE: "0.5"
+  PLANT_MIN_CONFIDENCE: "0.7"
   CONDITION_MIN_CONFIDENCE: "0.5"
   MAX_UPLOAD_MB: "8"
   ORT_THREADS: "1"

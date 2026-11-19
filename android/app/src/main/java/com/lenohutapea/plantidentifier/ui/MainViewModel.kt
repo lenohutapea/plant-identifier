@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.lenohutapea.plantidentifier.BuildConfig
 import com.lenohutapea.plantidentifier.PlantIdentifierApp
 import com.lenohutapea.plantidentifier.data.Diagnosis
 import com.lenohutapea.plantidentifier.data.DiagnosisRepository
+import com.lenohutapea.plantidentifier.data.ServerSettings
 import com.lenohutapea.plantidentifier.data.local.DiagnosisEntity
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +28,10 @@ sealed interface AnalysisState {
     data class Error(val message: String) : AnalysisState
 }
 
-class MainViewModel(private val repository: DiagnosisRepository) : ViewModel() {
+class MainViewModel(
+    private val repository: DiagnosisRepository,
+    private val settings: ServerSettings,
+) : ViewModel() {
     private val _state = MutableStateFlow<AnalysisState>(AnalysisState.Idle)
     val state: StateFlow<AnalysisState> = _state.asStateFlow()
 
@@ -44,7 +47,7 @@ class MainViewModel(private val repository: DiagnosisRepository) : ViewModel() {
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                AnalysisState.Error(e.toUserMessage())
+                AnalysisState.Error(e.toUserMessage(settings.baseUrl))
             }
         }
     }
@@ -67,21 +70,21 @@ class MainViewModel(private val repository: DiagnosisRepository) : ViewModel() {
         val Factory = viewModelFactory {
             initializer {
                 val app = this[APPLICATION_KEY] as PlantIdentifierApp
-                MainViewModel(app.container.repository)
+                MainViewModel(app.container.repository, app.container.settings)
             }
         }
     }
 }
 
-private fun Throwable.toUserMessage(): String = when (this) {
+private fun Throwable.toUserMessage(serverUrl: String): String = when (this) {
     is HttpException -> when (code()) {
         400 -> "The server could not read this photo. Try another image."
         413 -> "The photo is too large."
         503 -> "The server is still loading the model. Try again in a moment."
         else -> "Server error (HTTP ${code()})."
     }
-    is IOException -> "Cannot reach the server at ${BuildConfig.API_BASE_URL}. " +
-        "Make sure your phone is on the same network as the API."
+    is IOException -> "Cannot reach the server at $serverUrl. Make sure your phone is on the same network " +
+        "as the API, or change the address in Settings."
     is IllegalArgumentException -> message ?: "Cannot read this image."
     else -> message ?: "Something went wrong."
 }

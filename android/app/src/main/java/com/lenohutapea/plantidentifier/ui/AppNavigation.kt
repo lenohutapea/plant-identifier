@@ -11,11 +11,13 @@ import androidx.navigation.compose.rememberNavController
 import com.lenohutapea.plantidentifier.ui.screens.HistoryScreen
 import com.lenohutapea.plantidentifier.ui.screens.HomeScreen
 import com.lenohutapea.plantidentifier.ui.screens.ResultScreen
+import com.lenohutapea.plantidentifier.ui.screens.SettingsScreen
 
 private object Routes {
     const val HOME = "home"
     const val RESULT = "result"
     const val HISTORY = "history"
+    const val SETTINGS = "settings"
 }
 
 @Composable
@@ -37,6 +39,7 @@ fun PlantIdentifierNavHost(viewModel: MainViewModel = viewModel(factory = MainVi
                 state = state,
                 onImageSelected = viewModel::analyze,
                 onOpenHistory = { navController.navigate(Routes.HISTORY) },
+                onOpenSettings = { navController.navigate(Routes.SETTINGS) },
                 onDismissError = viewModel::reset,
             )
         }
@@ -53,6 +56,12 @@ fun PlantIdentifierNavHost(viewModel: MainViewModel = viewModel(factory = MainVi
             } else {
                 LaunchedEffect(Unit) { navController.popBackStack() }
             }
+        }
+        composable(Routes.SETTINGS) {
+            SettingsScreen(
+                viewModel = viewModel(factory = SettingsViewModel.Factory),
+                onBack = { navController.popBackStack() },
+            )
         }
         composable(Routes.HISTORY) {
             HistoryScreen(

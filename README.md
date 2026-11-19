@@ -29,27 +29,38 @@ Both are evaluated on the same held-out sets, at disease level and plant level
 (probabilities summed per crop).
 
 <!-- RESULTS:START -->
-Results of [model-v1](https://github.com/lenohutapea/plant-identifier/releases/tag/model-v1)
-(14 crops, 38 classes; the PlantDoc field test set has 228 images in 27 classes):
+Results of [model-v2](https://github.com/lenohutapea/plant-identifier/releases/tag/model-v2)
+(15 crops, 41 classes). The PlantDoc field test set has 228 images in 27 classes; the rice test set has 99 images.
 
 | Model | Test set | Plant accuracy | Disease accuracy | Disease top-3 | Disease macro-F1 |
 |---|---|---:|---:|---:|---:|
 | A — lab only | PlantVillage test (lab, 5,432 images) | 100.0% | 99.9% | 100.0% | 0.999 |
-| A — lab only | **PlantDoc test (field)** | **54.8%** | **30.7%** | 45.6% | 0.287 |
-| B — field fine-tuned | PlantVillage test (lab, 5,432 images) | 100.0% | 99.7% | 100.0% | 0.995 |
-| B — field fine-tuned | **PlantDoc test (field)** | **81.6%** | **64.0%** | **90.8%** | 0.627 |
+| A — lab only | **PlantDoc test (field)** | **55.7%** | **27.6%** | 45.2% | 0.249 |
+| B — field fine-tuned | PlantVillage test (lab, 5,432 images) | 100.0% | 99.7% | 100.0% | 0.997 |
+| B — field fine-tuned | **PlantDoc test (field)** | **85.5%** | **69.3%** | **91.7%** | 0.685 |
+| B — field fine-tuned | Rice test (field) | 96.0% | 85.9% | 93.9% | 0.873 |
 
-- A model that is 99.9% accurate on lab photos gets **30.7%** of real field photos right.
-- Fine-tuning with field photos **doubles field accuracy to 64.0%** while lab accuracy stays at 99.7%.
-  The correct disease is in the top 3 for 90.8% of field photos, which is why the app shows the top 3.
-- Plant-level accuracy in the field (81.6%) is much higher than disease-level accuracy: the app can
+- A model that is 99.9% accurate on lab photos gets only **27.6%** of real field photos right.
+- Fine-tuning with field photos **raises field accuracy to 69.3%** while lab accuracy stays at 99.7%.
+  The correct disease is in the top 3 for 91.7% of field photos, which is why the app shows the top 3.
+- Plant-level accuracy in the field (85.5%) is much higher than disease-level accuracy: the app can
   usually name the crop even when the disease is uncertain.
-- The field test set is small (3–12 images per class), so field accuracy carries roughly ±6 percentage
-  points of uncertainty and per-class numbers are rough.
-- Weakest field classes after fine-tuning: Tomato mosaic virus (F1 0.17) and Tomato bacterial spot (0.20),
-  both often confused with Septoria leaf spot; Cherry leaves are confused with Peach and Apple.
+- Rice results come from one small dataset (one source), so they are likely optimistic for photos from
+  other paddies.
+- Weakest field classes: Tomato bacterial spot and mosaic virus (often confused with Septoria leaf spot),
+  corn leaf diseases (confused with each other) and cherry leaves (confused with peach and apple).
 
-![Validation accuracy per epoch: lab-only training never gets past about 23% on field photos](docs/images/training_curves.png)
+**How much to trust these numbers.** The same data and settings trained twice gave field disease accuracy
+of 64.0% and 69.7% (GPU nondeterminism, small test set: about ±6 points of uncertainty). Differences of that
+size between versions are noise, not progress:
+
+| Run | Classes | Field plant accuracy | Field disease accuracy | Field top-3 |
+|---|---:|---:|---:|---:|
+| model-v1 | 38 | 81.6% | 64.0% | 90.8% |
+| same setup as v1, second run (not released) | 38 | 82.0% | 69.7% | 89.9% |
+| model-v2 (adds rice) | 41 | 85.5% | 69.3% | 91.7% |
+
+![Validation accuracy per epoch for both training stages](docs/images/training_curves.png)
 
 <details>
 <summary>Field confusion matrices (plant level), before and after fine-tuning</summary>
@@ -59,8 +70,42 @@ Results of [model-v1](https://github.com/lenohutapea/plant-identifier/releases/t
 
 </details>
 
-Dataset hygiene for this run: 18 images with conflicting labels and 24 duplicate copies removed;
-971 training images that were near-duplicates of validation or test images were dropped.
+Dataset hygiene for this run: 18 images with conflicting labels and 169 duplicate copies removed (mostly
+re-uploaded rice images); 994 training images that were near-duplicates of validation or test images dropped.
+
+### Choosing the "not recognized" threshold
+
+The API names a plant only when its probability is at least `PLANT_MIN_CONFIDENCE`. The notebook measures the
+trade-off on the PlantDoc **validation** set (field photos, never the test set):
+
+| Threshold | Field photos answered | Accuracy when answered | Wrong answers |
+|---:|---:|---:|---:|
+| 0.5 | 92.5% | 89.1% | 10.1% |
+| 0.6 | 87.4% | 91.4% | 7.5% |
+| **0.7 (deployed)** | **81.0%** | **94.3%** | **4.6%** |
+| 0.8 | 69.8% | 96.7% | 2.3% |
+| 0.9 | 44.0% | 98.0% | 0.9% |
+
+0.7 halves the wrong answers compared with 0.5 while still answering four out of five field photos; on lab and
+rice photos it still answers 95–100% of them with no errors. It only measures plants the model knows: leaves of
+other species are filtered better but not reliably, which is what the planned "other" class addresses.
+
+## Model versions
+
+Models are published as GitHub Releases, never baked into the image. Switching versions is a one-line ConfigMap
+change; the init container downloads the release and refuses a file whose SHA-256 does not match `labels.json`.
+
+| Release | What changed | Classes |
+|---|---|---:|
+| [model-v0-dummy](https://github.com/lenohutapea/plant-identifier/releases/tag/model-v0-dummy) | Stand-in with the real input/output contract, to build the pipeline before training | 41 |
+| [model-v1](https://github.com/lenohutapea/plant-identifier/releases/tag/model-v1) | First trained model: PlantVillage + PlantDoc | 38 |
+| [model-v2](https://github.com/lenohutapea/plant-identifier/releases/tag/model-v2) | Adds rice; resumable training with Drive checkpoints; threshold calibration | 41 |
+
+```bash
+# deploy or roll back: point MODEL_BASE_URL at another release, then restart
+sed -i 's#download/model-v2#download/model-v1#' deploy/k8s/configmap.yaml
+kubectl apply -k deploy/k8s && kubectl -n plant-identifier rollout restart deploy/plant-api
+```
 <!-- RESULTS:END -->
 
 Per-class F1 before/after, confusion matrices and training curves are produced by the notebook
@@ -79,7 +124,7 @@ CI builds the debug APK on every push and publishes it to the
 
 ## Field testing on a phone
 
-Photos taken or picked on a real phone with model-v1, beyond the benchmark test sets:
+Photos taken or picked on a real phone with model-v1 (threshold 0.5), beyond the benchmark test sets:
 
 | Photo | Truth | App answer | Confidence | Verdict |
 |---|---|---|---:|---|
@@ -89,13 +134,14 @@ Photos taken or picked on a real phone with model-v1, beyond the benchmark test 
 
 What this shows:
 
-- The model is **closed-set**: it must pick one of its 14 crops, so a leaf it has never seen is mapped to the
+- The model is **closed-set**: it must pick one of its 15 crops, so a leaf it has never seen is mapped to the
   most similar one. For chili this is useful (the app now labels the class "Paprika / Cabai"); for other
   plants it is a wrong answer delivered with moderate confidence.
 - Healthy potato has the fewest examples in the training data (about 150 lab photos, no field photos), which
   matches the potato miss.
-- Planned fixes: choose the "not recognized" threshold from the validation calibration table that the
-  notebook now produces, and train an explicit **"other plant / not a leaf"** class with out-of-scope images.
+- Fixes: the "not recognized" threshold is now 0.7, chosen from the validation calibration table (the potato
+  miss at 65% would now be "not recognized"); next, an explicit **"other plant / not a leaf"** class trained on
+  out-of-scope images.
 
 ## Architecture
 
@@ -141,8 +187,7 @@ Design choices worth noting:
 
 ## Supported plants
 
-model-v1 recognizes 14 crops and 38 classes (`Plant___Condition`). Rice (3 classes) has care
-information in the API already and is planned for model-v2.
+model-v2 recognizes 15 crops and 41 classes (`Plant___Condition`).
 
 | Plant | Conditions | Condition reported? |
 |---|---|---|
@@ -157,7 +202,7 @@ information in the API already and is planned for model-v2.
 | Tomato (Tomat) | 9 diseases + Healthy | Yes |
 | Orange (Jeruk) | Citrus greening (CVPD) only | No — no healthy class |
 | Squash (Labu) | Powdery mildew only | No — no healthy class |
-| Rice (Padi) — planned for model-v2 | Bacterial leaf blight, Blast, Brown spot | No — no healthy class |
+| Rice (Padi) | Bacterial leaf blight, Blast, Brown spot | No — no healthy class |
 | Blueberry, Raspberry, Soybean (Kedelai) | Healthy only | No — no disease class |
 
 For the last six the app shows the plant and its care information, and says the leaf condition cannot be
@@ -248,7 +293,7 @@ under load rather than maximum throughput.
 
 ## Limitations
 
-- **14 crops only (rice follows in model-v2).** Many crops common in Indonesia — cassava, cocoa, coffee,
+- **15 crops only.** Many crops common in Indonesia — cassava, cocoa, coffee,
   sweet potato — are not in the datasets, and a photo of them will be "not recognized" at best or
   misclassified at worst (see Field testing). Chili has no class of its own; its leaves are recognized as
   bell pepper (same genus), and disease diagnosis on chili is untested.
@@ -272,7 +317,7 @@ under load rather than maximum throughput.
 |---|---|---|
 | [PlantVillage](https://github.com/spMohanty/PlantVillage-Dataset) — about 54,000 lab images, 38 classes | Training (A and B), lab test set | CC BY-SA 3.0 |
 | [PlantDoc](https://github.com/pratikkayal/PlantDoc-Dataset) — 2,598 field images | Fine-tuning (B), field test set | CC BY 4.0 |
-| [Rice Disease Dataset](https://www.kaggle.com/datasets/nischallal/rice-disease-dataset) — about 470 field images | Adds rice (planned for model-v2) | CC0 1.0 |
+| [Rice Disease Dataset](https://www.kaggle.com/datasets/nischallal/rice-disease-dataset) — about 470 field images | Adds rice (model-v2) | CC0 1.0 |
 
 ```bibtex
 @article{hughes2015plantvillage,

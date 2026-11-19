@@ -17,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -50,6 +51,7 @@ fun HomeScreen(
     state: AnalysisState,
     onImageSelected: (Uri) -> Unit,
     onOpenHistory: () -> Unit,
+    onOpenSettings: () -> Unit,
     onDismissError: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -69,6 +71,9 @@ fun HomeScreen(
             TopAppBar(
                 title = { Text("Plant Identifier") },
                 actions = {
+                    IconButton(onClick = onOpenSettings) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                    }
                     IconButton(onClick = onOpenHistory) {
                         Icon(Icons.AutoMirrored.Filled.List, contentDescription = "History")
                     }
