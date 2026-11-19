@@ -121,9 +121,13 @@ by the notebook (`eval/` in the training artifacts, attached to each
 
 ## Android app
 
-| Home | Result | Not recognized | History |
+| Home | Result: Diagnosis | Result: Care | Result: Schedule |
 |---|---|---|---|
-| <img src="docs/images/android_home.jpg" width="190" alt="Home screen with take-photo and gallery buttons, recent diagnoses and supported plants"> | <img src="docs/images/android_result.jpg" width="190" alt="Result screen with the plant, leaf condition, confidence and care information in Indonesian"> | <img src="docs/images/android_unrecognized.jpg" width="190" alt="A corn cob photo answered with Not recognized and the closest matches"> | <img src="docs/images/android_history.jpg" width="190" alt="History of saved diagnoses with status tags"> |
+| <img src="docs/images/android_home.jpg" width="190" alt="Home screen with take-photo and gallery buttons, recent diagnoses and the 15 supported crops"> | <img src="docs/images/android_result.jpg" width="190" alt="Strawberry recognized at 86%, leaf healthy, Diagnosis tab with top predictions"> | <img src="docs/images/android_care.jpg" width="190" alt="Care tab: where it grows in Indonesia, planting, water, fertilizer and harvest in Indonesian"> | <img src="docs/images/android_schedule.jpg" width="190" alt="Schedule tab: timeline in days after planting"> |
+
+| Not recognized | History |
+|---|---|
+| <img src="docs/images/android_unrecognized.jpg" width="190" alt="A corn cob photo answered with Not recognized and the closest matches"> | <img src="docs/images/android_history.jpg" width="190" alt="History of saved diagnoses with status tags"> |
 
 Kotlin + Jetpack Compose, MVVM, Retrofit, Room.
 
